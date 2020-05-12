@@ -1,0 +1,6 @@
+8#1
+LQ RRB NE
+NE
++ MUL DIV
+EQ
+8#001

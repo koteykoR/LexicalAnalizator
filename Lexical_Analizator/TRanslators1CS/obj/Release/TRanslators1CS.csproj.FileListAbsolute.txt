@@ -1,0 +1,7 @@
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\bin\Release\TRanslators1CS.exe.config
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\bin\Release\TRanslators1CS.exe
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\bin\Release\TRanslators1CS.pdb
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\obj\Release\TRanslators1CS.csprojAssemblyReference.cache
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\obj\Release\TRanslators1CS.csproj.CoreCompileInputs.cache
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\obj\Release\TRanslators1CS.exe
+C:\Users\nechu\source\repos\TRanslators1CS\TRanslators1CS\obj\Release\TRanslators1CS.pdb
