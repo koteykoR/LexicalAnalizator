@@ -1,0 +1,7 @@
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\bin\Debug\TRanslators1CS.exe.config
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\bin\Debug\TRanslators1CS.exe
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\bin\Debug\TRanslators1CS.pdb
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\obj\Debug\Lex_analizator.csprojAssemblyReference.cache
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\obj\Debug\Lex_analizator.csproj.CoreCompileInputs.cache
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\obj\Debug\TRanslators1CS.exe
+C:\Users\nechu\OneDrive\Рабочий стол\В гитхаб\Lexical_Analizator\TRanslators1CS\obj\Debug\TRanslators1CS.pdb

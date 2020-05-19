@@ -11,30 +11,42 @@ namespace TRanslators1CS
             string pathToInput = args.First();
             Outputer.SetPath(args[1]);
             Transliterator.start(pathToInput);
-
         }
 
         class Transliterator
         {
             public static void start(string path)
             {
-              
-                bool isOK=true;
+
+                bool isOK = true;
                 if (!File.Exists(path))
                 {
                     Console.WriteLine("Входной файл не найден");
                     System.Environment.Exit(1);
                 }
-                
 
                 string[] allText = File.ReadAllLines(path);      //Получаем все строки
                 int row = 0;                                //Номер строки
                 foreach (string str in allText)             //Идём по каждой строке
                 {
                     row++;
-                    string[] line = str.Split(' ');      //Получаем все слова 
+                    string[] line;
+                    string str1;
+                    str1 = str;
+                    if (str.Contains('{') && str.Contains('}'))
+                    {
+                        string[] comment = str.Split(new[] { '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+                        string comment1 = String.Join(" ", comment);
+                        str1 = str.Replace(comment1, " ");   
+                    }
+                    if (str1.Split(' ').Count() > 1) { line = str1.Split(' '); } //Получаем все слова ПЕРЕДЕЛАТЬ, ГОВНОКОДИЩЕ!!!
+                    else { line = new[] { str }; }
                     foreach (string word in line)
                     {
+
+                        if (word == "") continue;
+                        if (isRead(word)) { Outputer.WriteToFile(row, word, "Reading"); continue; }
+                        if (isWrite(word)) { Outputer.WriteToFile(row, word, "Writing"); continue; }
                         if (isAdd(word)) { Outputer.WriteToFile(row, word, "Adding"); continue; }
                         if (isDiv(word)) { Outputer.WriteToFile(row, word, "Dividing"); continue; }
                         if (isMul(word)) { Outputer.WriteToFile(row, word, "Multiplying"); continue; }
@@ -46,14 +58,16 @@ namespace TRanslators1CS
                         if (isLRB(word)) { Outputer.WriteToFile(row, word, "Left_R_Brace}"); continue; }
                         if (isDecimal(word)) { Outputer.WriteToFile(row, word, "Decimal"); continue; }
                         if (isBin(word)) { Outputer.WriteToFile(row, word, "Bin"); continue; }
-                        if(isOctal(word)) { Outputer.WriteToFile(row, word, "Octal"); continue; }
+                        if (isOctal(word)) { Outputer.WriteToFile(row, word, "Octal"); continue; }
                         if (isHex(word)) { Outputer.WriteToFile(row, word, "Hex"); continue; }
+                        if (isLCB(word)) { Outputer.WriteToFile(row, word, "LCB"); continue; }
+                        if (isRCB(word)) { Outputer.WriteToFile(row, word, "RCB"); continue; }
                         Outputer.WriteToFile(row, word, "Error");
                         isOK = false;
-                        Console.WriteLine("Error:" + "row" + row + "word-" + word +":Unknown word") ;
+                        Console.WriteLine("Error:" + "row " + row + "word-" + word + ":Unknown word");
                     }
-                    if (isOK) { Console.WriteLine("Ok"); }
                 }
+                if (isOK) { Console.WriteLine("Ok"); }
             }
             public static bool isAdd(string ch)
             {
@@ -63,9 +77,9 @@ namespace TRanslators1CS
                 }
                 return false;
             }
-
             static bool isDecimal(string ch)
             {
+
                 if (ch[0] == '1' && ch[1] == '0' && ch[2] == '#')
                 {
                     bool isNumber = true;
@@ -133,178 +147,211 @@ namespace TRanslators1CS
             return false;
         }
         public static bool isMin(string ch)
-            {
-                if (string.Compare(ch, "min", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isMul(string ch)
-            {
-                if (string.Compare(ch, "mul", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public static bool isDiv(string ch)
-            {
-                if (string.Compare(ch, "Div", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public static bool isMod(string ch)
-            {
-                if (string.Compare(ch, "mod", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public static bool isEqual(string ch)
-            {
-                if (string.Compare(ch, "EQ", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isNot(string ch)
-            {
-                if (string.Compare(ch, "NE", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isLess(string ch)
-            {
-                if (string.Compare(ch, "LT", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isMore(string ch)
-            {
-                if (string.Compare(ch, "GT", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isLet(string ch)
-            {
-                if (string.Compare(ch, "Let", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isLBox(string ch)
-            {
-                if (string.Compare(ch, "box", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public static bool isEnd(string ch)
-            {
-                if (string.Compare(ch, "end", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isCast(string ch)
-            {
-                if (string.Compare(ch, "Cast", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isInt(string ch)
-            {
-                if (string.Compare(ch, "int", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isReal(string ch)
-            {
-                if (string.Compare(ch, "real", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isId(string ch)
-            {
-                if (string.Compare(ch, "id", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isLRB(string ch)
-            {
-                if (string.Compare(ch, "LRB", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isRRB(string ch)
-            {
-                if (string.Compare(ch, "RRB", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            public static bool isLSB(string ch)
-            {
-                if (string.Compare(ch, "LSB", true) == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            
-
-
-            
-
-
-             
-
-            }
-        abstract class Outputer
         {
-            public static string path;
-
-            public static void SetPath(string Path)
+            if (string.Compare(ch, "min", true) == 0)
             {
-                path = Path;
+                return true;
             }
-
-            public static void WriteToFile(int row, string lexema, string type)
-            
+            return false;
+        }
+        public static bool isMul(string ch)
+        {
+            if (string.Compare(ch, "mul", true) == 0)
             {
-                File.AppendAllText(path, row + "_lex:" + type + ':' + lexema + "\n");
+                return true;
             }
+            return false;
+        }
+
+        public static bool isDiv(string ch)
+        {
+            if (string.Compare(ch, "Div", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool isMod(string ch)
+        {
+            if (string.Compare(ch, "mod", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool isEqual(string ch)
+        {
+            if (string.Compare(ch, "EQ", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isNot(string ch)
+        {
+            if (string.Compare(ch, "NE", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLess(string ch)
+        {
+            if (string.Compare(ch, "LT", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isMore(string ch)
+        {
+            if (string.Compare(ch, "GT", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLet(string ch)
+        {
+            if (string.Compare(ch, "Let", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLBox(string ch)
+        {
+            if (string.Compare(ch, "box", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool isEnd(string ch)
+        {
+            if (string.Compare(ch, "end", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isCast(string ch)
+        {
+            if (string.Compare(ch, "Cast", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isInt(string ch)
+        {
+            if (string.Compare(ch, "int", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isReal(string ch)
+        {
+            if (string.Compare(ch, "real", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isId(string ch)
+        {
+            if (string.Compare(ch, "id", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLRB(string ch)
+        {
+            if (string.Compare(ch, "LRB", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isRRB(string ch)
+        {
+            if (string.Compare(ch, "RRB", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLSB(string ch)
+        {
+            if (string.Compare(ch, "LSB", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isRead(string ch)
+        {
+            if (string.Compare(ch, "read", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isWrite(string ch) //Добавитьл
+        {
+            if (string.Compare(ch, "write", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isDo(string ch) //Добавитьл
+        {
+            if (string.Compare(ch, "Do", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isLCB(string ch)
+        {
+            if (string.Compare(ch, "{", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isRCB(string ch)
+        {
+            if (string.Compare(ch, "}", true) == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+    }
+    abstract class Outputer
+    {
+        public static string path;
+
+        public static void SetPath(string Path)
+        {
+            path = Path;
+        }
+
+        public static void WriteToFile(int row, string lexema, string type)
+
+        {
+            File.AppendAllText(path, row + "_lex:" + type + ':' + lexema + "\n");
         }
     }
+}
 
 
 

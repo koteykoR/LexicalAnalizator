@@ -1,6 +1,19 @@
-8#1
-LQ RRB NE
-NE
-+ MUL DIV
-EQ
-8#001
+{абвгдеёжзийклмнопрстуфхцчшщъыьэюя_#$%^&}
+{+ plus add}
+{- minus sub}
+{* mult mul}
+{/ div}
+{mod %}
+{= == eq equ}
+{<> != ne neq}
+{< lt lth}
+{> gt gth}
+{<= le leq}
+{>= ge geq}
+{:= = let mov}
+{begin start box}
+{end stop end}
+{tools proc call}
+{read write cast}
+{skip space tab}
+read

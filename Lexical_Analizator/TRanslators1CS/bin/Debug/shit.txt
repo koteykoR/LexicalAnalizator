@@ -1,0 +1,13 @@
+1_lex:Error:{Закомментированные
+1_lex:Error:начала
+1_lex:Error:комментариев}
+2_lex:Error:{
+2_lex:Error:{}
+3_lex:Error:{
+3_lex:Error:/*}
+4_lex:Error:i:int;
+5_lex:Error:a:real;
+6_lex:Error:ii:vector[5]of
+6_lex:Error:int;
+7_lex:Error:aa:vector[10]of
+7_lex:Error:real;
